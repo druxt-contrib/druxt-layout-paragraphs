@@ -1,6 +1,6 @@
 {
   "name": "druxt-layout-paragraphs",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "keywords": [
     "druxt",
     "drupal",
@@ -18,10 +18,7 @@
   },
   "main": "dist/index.ssr.js",
   "module": "dist/index.esm.js",
-  "files": [
-    "dist",
-    "templates"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "siroc build",
     "build:watch": "siroc build --watch",
