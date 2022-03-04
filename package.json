@@ -1,9 +1,13 @@
 {
-  "name": "druxt-module-template",
+  "name": "druxt-layout-paragraphs",
   "version": "0.0.0",
   "keywords": [
     "druxt",
-    "module"
+    "drupal",
+    "layout",
+    "module",
+    "paragraphs",
+    "nuxt"
   ],
   "exports": {
     ".": {
@@ -40,6 +44,9 @@
     "siroc": "0.16.0",
     "vue-jest": "3.0.7",
     "vue-template-compiler": "2.6.14"
+  },
+  "peerDependencies": {
+    "druxt-entity": "^0.24.2"
   },
   "publishConfig": {
     "access": "public"

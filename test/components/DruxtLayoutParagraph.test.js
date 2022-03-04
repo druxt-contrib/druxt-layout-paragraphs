@@ -2,7 +2,7 @@ import 'regenerator-runtime/runtime'
 import { createLocalVue, mount } from '@vue/test-utils'
 
 import DruxtWrapper from 'druxt/dist/components/DruxtWrapper.vue'
-import DruxtModuleComponent from '../../src/components/DruxtModuleComponent.vue'
+import DruxtModuleComponent from '../../src/components/DruxtLayoutParagraph.vue'
 
 // Setup local vue instance.
 const localVue = createLocalVue()
@@ -15,14 +15,23 @@ const mountComponent = function() {
     {
       localVue,
       mocks: {
-        $fetchState: { pending: true }
+        $fetchState: { pending: true },
+        $nuxt: {
+          context: {}
+        }
+      },
+      props: {
+        entity: {
+          type: 'node--page',
+          attributes: {},
+        }
       }
     }
   )
 }
 
-describe('DruxtModuleComponent', () => {
-  test('Hello world', async () => {
+describe('DruxtLayoutParagraph', () => {
+  test('Default', async () => {
     // Mount the component.
     const wrapper = mountComponent()
 
@@ -30,13 +39,12 @@ describe('DruxtModuleComponent', () => {
     await wrapper.vm.$options.fetch.call(wrapper.vm)
 
     // Assert data and props are as expected.
-    expect(wrapper.vm.foo).toBe('bar')
     expect(wrapper.vm.component).toMatchSnapshot()
 
     // Assert slots.
-    const h = jest.fn()
-    const slots = wrapper.vm.$options.druxt.slots(h)
-    slots.default()
-    expect(h).toBeCalledWith('div', ['Hello world'])
+    // const h = jest.fn()
+    // const slots = wrapper.vm.$options.druxt.slots(h)
+    // slots.default()
+    // expect(h).toBeCalledWith('div', ['Hello world'])
   })
 })

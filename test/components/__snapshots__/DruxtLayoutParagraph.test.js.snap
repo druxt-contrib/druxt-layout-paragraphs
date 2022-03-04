@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DruxtLayoutParagraph Default 1`] = `
+Object {
+  "$attrs": Object {
+    "entity": undefined,
+  },
+  "is": "DruxtWrapper",
+  "options": Array [
+    "DruxtLayoutParagraphDefault",
+  ],
+  "props": Object {},
+  "propsData": Object {
+    "entity": undefined,
+  },
+  "settings": Object {},
+  "slots": Array [],
+}
+`;
