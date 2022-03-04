@@ -18,7 +18,7 @@ export default {
      * Provide component options using the layout name.
      */
     componentOptions: ({ entity }) => [
-      [((((entity || {}).attributes || {}).behavior_settings || {}).layout_paragraphs || {}).layout],
+      [(((((entity || {}).attributes || {}).behavior_settings || {}).layout_paragraphs || {}).layout || '').replace('layout_', '')],
       ['default'],
     ],
 
