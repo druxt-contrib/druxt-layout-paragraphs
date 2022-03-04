@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Druxt Module component example</h1>
-    <DruxtModuleComponent />
+    <h1>DruxtLayoutParagraphs example</h1>
+    <!--<DruxtEntity mode="full" type="node--article" uuid="" />-->
   </div>
 </template>
