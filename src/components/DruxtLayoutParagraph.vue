@@ -7,6 +7,11 @@ export default {
   extends: DruxtModule,
 
   props: {
+    children: {
+      type: Array,
+      default: undefined,
+    },
+
     entity: {
       type: Object,
       required: true,
@@ -18,14 +23,14 @@ export default {
      * Provide component options using the layout name.
      */
     componentOptions: ({ entity }) => [
-      [((((entity || {}).attributes || {}).behavior_settings || {}).layout_paragraphs || {}).layout],
+      [(((((entity || {}).attributes || {}).behavior_settings || {}).layout_paragraphs || {}).layout || '').replace('layout_', '')],
       ['default'],
     ],
 
     /**
      * Provide the entity as a prop.
      */
-    propsData: ({ entity }) => ({ entity }),
+    propsData: ({ children, entity }) => ({ children, entity }),
   },
 }
 </script>
