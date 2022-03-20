@@ -14,6 +14,8 @@ module:
   contextual: 0
   datetime: 0
   dblog: 0
+  decoupled_router: 0
+  druxt: 0
   dynamic_page_cache: 0
   editor: 0
   entity_reference_revisions: 0
@@ -24,6 +26,10 @@ module:
   help: 0
   history: 0
   image: 0
+  jsonapi: 0
+  jsonapi_menu_items: 0
+  jsonapi_resources: 0
+  jsonapi_views: 0
   layout_discovery: 0
   layout_paragraphs: 0
   link: 0

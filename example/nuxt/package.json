@@ -7,7 +7,7 @@
   "dependencies": {
     "druxt": "latest",
     "druxt-entity": "latest",
-    "druxt-layout-paragraphs": "link:..",
+    "druxt-layout-paragraphs": "link:../..",
     "nuxt": "latest"
   }
 }

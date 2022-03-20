@@ -7,6 +7,7 @@ dependencies:
   module:
     - comment
     - contact
+    - druxt
     - filter
     - search
     - system
@@ -19,6 +20,7 @@ is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
+  - 'access druxt resources'
   - 'access site-wide contact form'
   - 'search content'
   - 'use text format restricted_html'
