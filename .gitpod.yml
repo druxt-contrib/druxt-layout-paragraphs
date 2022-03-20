@@ -9,6 +9,8 @@ tasks:
       .gitpod/scripts/drupal-setup.sh
       # Installing Nuxt/Druxt frontend.
       .gitpod/scripts/nuxt-setup.sh
+      # Build module
+      yarn && yarn build
     command: |
       .gitpod/scripts/ddev-setup.sh
       .gitpod/scripts/nuxt-setup.sh
