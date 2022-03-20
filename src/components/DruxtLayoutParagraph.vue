@@ -31,12 +31,6 @@ export default {
      * Provide the entity as a prop.
      */
     propsData: ({ children, entity }) => ({ children, entity }),
-
-    slots(h) {
-      return {
-        default: () => h('div', ['Hello world']),
-      }
-    }
   },
 }
 </script>
