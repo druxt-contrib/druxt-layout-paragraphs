@@ -12,7 +12,7 @@ tasks:
     command: |
       .gitpod/scripts/ddev-setup.sh
       .gitpod/scripts/nuxt-setup.sh
-      cd $GITPOD_REPO_ROOT/nuxt && NUXT_TELEMETRY_DISABLED=1 npm run dev
+      cd $GITPOD_REPO_ROOT/example/nuxt && NUXT_TELEMETRY_DISABLED=1 yarn dev
 
 # VScode xdebug extension
 vscode:
