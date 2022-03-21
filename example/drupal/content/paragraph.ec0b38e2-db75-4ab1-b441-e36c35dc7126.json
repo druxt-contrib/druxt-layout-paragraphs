@@ -1,0 +1,59 @@
+{
+    "uuid": [
+        {
+            "value": "ec0b38e2-db75-4ab1-b441-e36c35dc7126"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text",
+            "target_type": "paragraphs_type",
+            "target_uuid": "fcb7b2e5-821f-4bf2-9eff-22e289a4280c"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-03-20T23:20:48+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "region": "first",
+                    "parent_uuid": "132fc071-804f-4314-a123-0c3587f2574a",
+                    "layout": "",
+                    "config": [],
+                    "parent_delta": 0
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text": [
+        {
+            "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.<\/p>\r\n",
+            "format": "basic_html"
+        }
+    ]
+}

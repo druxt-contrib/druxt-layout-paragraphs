@@ -1,0 +1,23 @@
+uuid: 88796b82-4c24-4e9a-8894-fc824a210f8b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.section.field_title
+    - paragraphs.paragraphs_type.section
+id: paragraph.section.default
+targetEntityType: paragraph
+bundle: section
+mode: default
+content:
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
