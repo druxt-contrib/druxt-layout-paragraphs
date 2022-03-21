@@ -2752,10 +2752,10 @@ drupal-jsonapi-params@^1.2.1:
   dependencies:
     qs "^6.10.0"
 
-druxt@0.18.0:
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/druxt/-/druxt-0.18.0.tgz#5f5dfe92aecb3b610e039e7facac144e143bb1d4"
-  integrity sha512-OuvRPE8drLMtp0jEZEHEzH0Bd+jF8P3Cqdy+x34tcp9jrJ2tAUbBVu81NKFXmfIRb9D3zKNKaQdAQPDa1UsBvA==
+druxt@0.18.1:
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/druxt/-/druxt-0.18.1.tgz#8aa9ecf5feeb2acb49ab4519d00c3c421cc9e461"
+  integrity sha512-Tk5DEndRFr3ayQKt7+91MJ5b0TjNQ8ISqLir5Q3wRt06TfPpPyg9Y5aP8kkj8bimPTKwb9E6YK9iiVnT663phw==
   dependencies:
     "@nuxtjs/axios" "^5.13.6"
     "@nuxtjs/proxy" "^2.1.0"
