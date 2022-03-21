@@ -31,6 +31,33 @@ export default {
      * Provide the entity as a prop.
      */
     propsData: ({ children, entity }) => ({ children, entity }),
+
+    slots(h) {
+      const slots = {}
+
+      // Determine the available regions based off the children.
+      const regions = this.children.map((o) => o.attributes.behavior_settings.layout_paragraphs.region).filter((str, index, map) => map.indexOf(str) === index)
+
+      // Create a slot for all available regions.
+      regions.forEach((region) => {
+        const children = this.children.filter((o) => o.attributes.behavior_settings.layout_paragraphs.region === region)
+        slots[region] = () => h('div', children.map((o) => h('DruxtEntity',
+          {
+            props: {
+              type: o.type,
+              uuid: o.id
+            }
+          }
+        )))
+      })
+
+      // If no default region, render all available region slots.
+      if (!slots.default) {
+        slots.default = () => h('div', regions.map((region) => slots[region]()))
+      }
+
+      return slots
+    }
   },
 }
 </script>
