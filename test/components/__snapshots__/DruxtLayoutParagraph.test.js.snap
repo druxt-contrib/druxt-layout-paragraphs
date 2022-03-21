@@ -16,6 +16,8 @@ Object {
     "entity": undefined,
   },
   "settings": Object {},
-  "slots": Array [],
+  "slots": Array [
+    "default",
+  ],
 }
 `;
