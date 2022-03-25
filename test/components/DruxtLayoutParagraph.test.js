@@ -22,7 +22,7 @@ const mountComponent = function() {
       },
       props: {
         entity: {
-          type: 'node--page',
+          type: 'paragraph--section',
           attributes: {},
         }
       }
