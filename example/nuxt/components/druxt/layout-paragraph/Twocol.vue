@@ -9,6 +9,13 @@
   </div>
 </template>
 
+<script>
+import { DruxtLayoutParagraphMixin } from 'druxt-layout-paragraphs'
+export default {
+  mixins: [DruxtLayoutParagraphMixin]
+}
+</script>
+
 <style scoped>
 .top {
   font-size: 1.25rem;

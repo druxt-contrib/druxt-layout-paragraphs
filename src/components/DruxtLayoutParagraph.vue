@@ -17,17 +17,9 @@ import DruxtModule from 'druxt/dist/components/DruxtModule.vue'
  * </template>
  *
  * <script>
+ * import { DruxtLayoutParagraphMixin } from 'druxt-layout-paragraphs'
  * export default {
- *   props: {
- *     children: {
- *       type: Array,
- *       required: true
- *     },
- *     entity: {
- *       type: Object,
- *       required: true
- *     }
- *   }
+ *   mixins: [DruxtLayoutParagraphMixin]
  * }
  *
  * @example <caption>DruxtLayoutParagraph with template injection</caption> @lang vue
@@ -37,18 +29,29 @@ import DruxtModule from 'druxt/dist/components/DruxtModule.vue'
  *     <DruxtDebug :json="{ children, entity }" />
  *   </template>
  * </DruxtLayoutParagraph>
- */export default {
+ */
+export default {
   name: 'DruxtLayoutParagraph',
 
   extends: DruxtModule,
 
   /** */
   props: {
+    /**
+     * An array of children paragraph entities.
+     *
+     * @type {object[]}
+     */
     children: {
       type: Array,
       default: undefined,
     },
 
+    /**
+     * The Layout Paragraphs entity JSON:API resource data.
+     *
+     * @type {object}
+     */
     entity: {
       type: Object,
       required: true,
