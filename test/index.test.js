@@ -1,4 +1,5 @@
-import NuxtModule from '../src'
+import DruxtLayoutParagraphNuxtModule from '../src'
+import { DruxtLayoutParagraphMixin } from '../src'
 
 const options = {
   baseUrl: 'https://demo-api.druxtjs.org',
@@ -7,7 +8,7 @@ const options = {
 
 let mock
 
-describe('DruxtModule Nuxt module', () => {
+describe('DruxtLayoutParagraphNuxtModule', () => {
   beforeEach(() => {
     mock = {
       addModule: jest.fn(),
@@ -17,7 +18,7 @@ describe('DruxtModule Nuxt module', () => {
         hook: jest.fn(),
       },
       options: {},
-      NuxtModule
+      DruxtLayoutParagraphNuxtModule
     }
   })
 
@@ -27,12 +28,16 @@ describe('DruxtModule Nuxt module', () => {
     mock.nuxt.hook = jest.fn((hook, fn) => fn(dirs))
 
     // Call Druxt module with module options.
-    NuxtModule.call(mock, options)
+    DruxtLayoutParagraphNuxtModule.call(mock, options)
 
     // Expect that:
     // - The components:dirs hook was invoked.
     // - One directory is present.
     expect(mock.nuxt.hook).toHaveBeenCalledWith('components:dirs', expect.any(Function))
     expect(dirs.length).toBe(1)
+  })
+
+  test('DruxtLayoutParagraphMixin', () => {
+    expect(DruxtLayoutParagraphMixin).toStrictEqual(expect.any(Object))
   })
 })
