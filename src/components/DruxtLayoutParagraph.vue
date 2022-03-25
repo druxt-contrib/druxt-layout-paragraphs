@@ -36,7 +36,7 @@ export default {
       const slots = {}
 
       // Determine the available regions based off the children.
-      const regions = (this.children || []).map((o) => o.attributes.behavior_settings.layout_paragraphs.region).filter((str, index, map) => map.indexOf(str) === index) ||
+      const regions = (this.children || []).map((o) => o.attributes.behavior_settings.layout_paragraphs.region).filter((str, index, map) => map.indexOf(str) === index)
 
       // Create a slot for all available regions.
       regions.forEach((region) => {
