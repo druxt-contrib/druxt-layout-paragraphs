@@ -16,6 +16,30 @@ Object {
     "entity": undefined,
   },
   "settings": Object {},
-  "slots": Array [],
+  "slots": Array [
+    "default",
+  ],
+}
+`;
+
+exports[`DruxtLayoutParagraph Slots 1`] = `
+Object {
+  "$attrs": Object {
+    "children": undefined,
+    "entity": undefined,
+  },
+  "is": "DruxtWrapper",
+  "options": Array [
+    "DruxtLayoutParagraphDefault",
+  ],
+  "props": Object {},
+  "propsData": Object {
+    "children": undefined,
+    "entity": undefined,
+  },
+  "settings": Object {},
+  "slots": Array [
+    "default",
+  ],
 }
 `;

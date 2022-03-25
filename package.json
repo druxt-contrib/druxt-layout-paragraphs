@@ -1,6 +1,6 @@
 {
   "name": "druxt-layout-paragraphs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "keywords": [
     "druxt",
     "drupal",
@@ -30,15 +30,15 @@
     "test:watch": "jest --watch"
   },
   "devDependencies": {
-    "@babel/core": "7.17.5",
+    "@babel/core": "7.17.8",
     "@babel/preset-env": "7.16.11",
-    "@changesets/cli": "2.21.0",
+    "@changesets/cli": "2.21.1",
     "@vue/test-utils": "1.3.0",
     "babel-core": "7.0.0-bridge.0",
-    "druxt": "0.18.0",
+    "druxt": "0.18.1",
     "esbuild-jest": "0.5.0",
-    "eslint": "8.10.0",
-    "eslint-plugin-nuxt": "3.1.0",
+    "eslint": "8.11.0",
+    "eslint-plugin-nuxt": "3.2.0",
     "jest": "27.5.1",
     "siroc": "0.16.0",
     "vue-jest": "3.0.7",

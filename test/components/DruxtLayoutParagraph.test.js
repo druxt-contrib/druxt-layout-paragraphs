@@ -22,7 +22,7 @@ const mountComponent = function() {
       },
       props: {
         entity: {
-          type: 'node--page',
+          type: 'paragraph--section',
           attributes: {},
         }
       }
@@ -42,9 +42,34 @@ describe('DruxtLayoutParagraph', () => {
     expect(wrapper.vm.component).toMatchSnapshot()
 
     // Assert slots.
-    // const h = jest.fn()
-    // const slots = wrapper.vm.$options.druxt.slots(h)
-    // slots.default()
-    // expect(h).toBeCalledWith('div', ['Hello world'])
+    const h = jest.fn()
+    const slots = wrapper.vm.$options.druxt.slots(h)
+    slots.default()
+    expect(h).toBeCalledWith('div', [])
+  })
+
+  test('Slots', async () => {
+    // Mount the component.
+    const wrapper = mountComponent()
+
+    // Simulate the Nuxt fetch hook.
+    await wrapper.vm.$options.fetch.call(wrapper.vm)
+
+    // Assert data and props are as expected.
+    expect(wrapper.vm.component).toMatchSnapshot()
+
+    // Assert slots.
+    const h = jest.fn()
+    const children = [{
+      attributes: {
+        behavior_settings: {
+          layout_paragraphs: {
+            region: 'test'
+          }
+        }
+      }
+    }]
+    const slots = wrapper.vm.$options.druxt.slots.call({ children }, h)
+    expect(Object.keys(slots)).toStrictEqual(['test', 'default'])
   })
 })

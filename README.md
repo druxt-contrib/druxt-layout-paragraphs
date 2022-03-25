@@ -1,9 +1,9 @@
 # DruxtLayoutParagraphs
 
 [![npm](https://badgen.net/npm/v/druxt-layout-paragraphs)](https://www.npmjs.com/package/druxt-layout-paragraphs)
-[![CI](https://github.com/Decipher/druxt-layout-paragraphs/actions/workflows/ci.yml/badge.svg)](https://github.com/Decipher/druxt-layout-paragraphs/actions/workflows/ci.yml)
-[![Known Vulnerabilities](https://snyk.io/test/github/Decipher/druxt-layout-paragraphs/badge.svg?targetFile=package.json)](https://snyk.io/test/github/Decipher/druxt-layout-paragraphs?targetFile=package.json)
-[![codecov](https://codecov.io/gh/Decipher/druxt-layout-paragraphs/branch/main/graph/badge.svg?token=TwCLJOKEjm)](https://codecov.io/gh/Decipher/druxt-layout-paragraphs)
+[![CI](https://github.com/druxt-contrib/druxt-layout-paragraphs/actions/workflows/ci.yml/badge.svg)](https://github.com/druxt-contrib/druxt-layout-paragraphs/actions/workflows/ci.yml)
+[![Known Vulnerabilities](https://snyk.io/test/github/druxt-contrib/druxt-layout-paragraphs/badge.svg?targetFile=package.json)](https://snyk.io/test/github/druxt-contrib/druxt-layout-paragraphs?targetFile=package.json)
+[![codecov](https://codecov.io/gh/druxt-contrib/druxt-layout-paragraphs/branch/main/graph/badge.svg?token=TwCLJOKEjm)](https://codecov.io/gh/druxt-contrib/druxt-layout-paragraphs)
 
 > Druxt support for the Drupal Layout Paragraphs module
 
