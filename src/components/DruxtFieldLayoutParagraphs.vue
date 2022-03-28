@@ -1,9 +1,9 @@
 <template>
   <div v-if="!$fetchState.pending">
     <DruxtEntity
-      v-for="section of items.filter((o) => o.type === 'paragraph--section')"
-      :key="`section-${section.uuid}`"
-      v-bind="section"
+      v-for="layout of layouts"
+      :key="`layout-${layout.uuid}`"
+      v-bind="layout"
     >
       <template #default="{ entity }">
         <DruxtLayoutParagraph
@@ -30,6 +30,14 @@ export default {
   async fetch() {
     const { data } = await this.$druxt.axios.get(this.model.links.related.href)
     this.paragraphs = data.data
+  },
+
+  computed: {
+    layouts: ({ paragraphs }) => paragraphs.filter((o) => o.attributes.behavior_settings.layout_paragraphs.layout)
+      .map((o) => ({
+        type: o.type,
+        uuid: o.id
+      }))
   },
 
   methods: {
