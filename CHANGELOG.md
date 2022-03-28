@@ -1,5 +1,11 @@
 # druxt-layout-paragraphs
 
+## 0.2.1
+
+### Patch Changes
+
+- 0fa3a3e: Fix incorrectly hardcoded layout paragraph resource type.
+
 ## 0.2.0
 
 ### Minor Changes
