@@ -13,6 +13,14 @@
 - Community Discord server: https://discord.druxtjs.org
 - Layout Paragraphs project page: https://www.drupal.org/project/layout_paragraphs
 
+## Features
+
+- **Layout Paragraphs** field wrapper.
+- **DruxtLayoutParagraph** component, auto referenced by field wrapper.
+  - Wrapper component support:
+    - `DruxtLayoutParagraph[Layout]`
+    - `DruxtLayoutParagraphDefault`
+  - Slots per region, e.g. `top`, `first`, `second`, `bottom`
 ## Install
 
 `$ npm install druxt-layout-paragraphs`
@@ -36,3 +44,5 @@ module.exports = {
 ### Drupal
 
 1. Download, install and setup the [Layout Paragraphs module](https://www.drupal.org/project/layout_paragraphs).
+2. Set the **Layout Paragraphs** field formatter on the Layout Paragraphs fields.
+  ![Layout Paragraphs field formatter](./docs/images/field-formatter.png)
