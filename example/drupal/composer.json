@@ -26,7 +26,7 @@
     "drupal/druxt": "1.1.1",
     "drupal/layout_paragraphs": "1.0.0",
     "drupal/tome": "1.6.0",
-    "drush/drush": "11.0.7"
+    "drush/drush": "11.0.8"
   },
   "require-dev": {
     "drupal/core-dev": "9.3.9"
