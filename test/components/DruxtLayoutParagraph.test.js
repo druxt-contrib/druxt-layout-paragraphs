@@ -18,7 +18,8 @@ const mountComponent = function() {
         $fetchState: { pending: true },
         $nuxt: {
           context: {}
-        }
+        },
+        $route: { meta: {} }
       },
       props: {
         entity: {
