@@ -1,5 +1,11 @@
 # druxt-layout-paragraphs
 
+## 0.2.2
+
+### Patch Changes
+
+- 6b51a22: Fixed issue with custom Axios instance and API proxy.
+
 ## 0.2.1
 
 ### Patch Changes
