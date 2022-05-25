@@ -7,5 +7,8 @@ export default {
     'druxt-entity',
     'druxt-layout-paragraphs'
   ],
-  druxt: { baseUrl }
+  druxt: {
+    baseUrl,
+    proxy: { api: true }
+  }
 }

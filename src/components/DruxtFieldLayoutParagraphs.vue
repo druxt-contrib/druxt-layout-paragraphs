@@ -28,7 +28,14 @@ export default {
   }),
 
   async fetch() {
-    const { data } = await this.$druxt.axios.get(this.model.links.related.href)
+    let { href } = this.model.links.related
+
+    // Use API proxy if enabled.
+    if ((this.$druxt.settings.proxy || {}.api)) {
+      href = href.replace(this.$druxt.settings.baseUrl, '')
+    }
+
+    const { data } = await this.$druxt.axios.get(href)
     this.paragraphs = data.data
   },
 
