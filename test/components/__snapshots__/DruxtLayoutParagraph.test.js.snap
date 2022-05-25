@@ -5,6 +5,7 @@ Object {
   "$attrs": Object {
     "children": undefined,
     "entity": undefined,
+    "langcode": undefined,
   },
   "is": "DruxtWrapper",
   "options": Array [
@@ -14,6 +15,7 @@ Object {
   "propsData": Object {
     "children": undefined,
     "entity": undefined,
+    "langcode": undefined,
   },
   "settings": Object {},
   "slots": Array [
@@ -27,6 +29,7 @@ Object {
   "$attrs": Object {
     "children": undefined,
     "entity": undefined,
+    "langcode": undefined,
   },
   "is": "DruxtWrapper",
   "options": Array [
@@ -36,6 +39,7 @@ Object {
   "propsData": Object {
     "children": undefined,
     "entity": undefined,
+    "langcode": undefined,
   },
   "settings": Object {},
   "slots": Array [

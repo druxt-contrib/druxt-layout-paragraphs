@@ -41,7 +41,10 @@ const mountComponent = function() {
       localVue,
       mocks: {
         $fetchState: { pending: true },
-        $druxt: { axios: { get: jest.fn(() => ({ data: mockData })) } },
+        $druxt: {
+          axios: { get: jest.fn(() => ({ data: mockData })) },
+          settings: { proxy: false }
+        },
         $nuxt: { context: {} }
       },
       propsData: {
