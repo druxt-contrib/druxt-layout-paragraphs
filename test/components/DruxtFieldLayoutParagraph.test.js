@@ -31,7 +31,14 @@ const mockData = {
       id: 'test-child'
     },
     {
-      attributes: { behavior_settings: {} },
+      attributes: {
+        behavior_settings: {
+          layout_paragraphs: {
+            layout: '',
+            parent_uuid: '',
+          },
+        }
+      },
       type: 'paragraph--text',
       id: 'test-root'
     },
@@ -69,6 +76,11 @@ describe('DruxtFieldLayoutParagraphs', () => {
     await wrapper.vm.$options.fetch.call(wrapper.vm)
 
     // Assert data and props are as expected.
+    expect(wrapper.vm.rootParagraphs).toStrictEqual([
+      mockData.data[0],
+      mockData.data[2]
+    ])
+
     expect(wrapper.vm.isLayout(mockData.data[0])).toBe(true)
     expect(wrapper.vm.getChildren(mockData.data[0])[0]).toBe(mockData.data[1])
 

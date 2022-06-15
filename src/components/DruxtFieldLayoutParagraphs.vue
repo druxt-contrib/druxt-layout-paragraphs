@@ -1,7 +1,7 @@
 <template>
   <div v-if="!$fetchState.pending">
     <DruxtEntity
-      v-for="paragraph of paragraphs"
+      v-for="paragraph of rootParagraphs"
       :key="paragraph.uuid"
       :type="paragraph.type"
       :uuid="paragraph.id"
@@ -38,6 +38,15 @@ export default {
 
     const { data } = await this.$druxt.axios.get(href)
     this.paragraphs = data.data
+  },
+
+  computed: {
+    /**
+     * Root level paragraphs.
+     *
+     * @return {object[]}
+     */
+    rootParagraphs: ({ paragraphs, isLayout }) => paragraphs.filter((o) => isLayout(o) || (!isLayout(o) && !(o.attributes.behavior_settings.layout_paragraphs || {}).parent_uuid)),
   },
 
   methods: {
