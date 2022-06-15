@@ -1,0 +1,58 @@
+{
+    "uuid": [
+        {
+            "value": "e7a4e78a-6409-47aa-8ce9-0ff468ce0872"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text",
+            "target_type": "paragraphs_type",
+            "target_uuid": "fcb7b2e5-821f-4bf2-9eff-22e289a4280c"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-06-15T23:39:10+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "region": "",
+                    "parent_uuid": "",
+                    "layout": "",
+                    "config": []
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text": [
+        {
+            "value": "<p>Aliquam blandit, elit eget feugiat efficitur, est turpis cursus augue, a fermentum quam nisl in ex. Aliquam rhoncus neque lectus, a convallis lacus ultricies vitae. Proin sed nisl sed tellus tincidunt efficitur. Integer sit amet ultricies mi, non dignissim nibh. Sed aliquet fringilla magna, sit amet porttitor libero scelerisque ut.<\/p>\r\n\r\n<p>Cras eget rutrum dolor, quis condimentum massa. In ullamcorper mi felis, vitae cursus felis ornare a. Donec gravida erat vel pretium dapibus. Mauris dui nulla, tincidunt at lacinia vel, feugiat imperdiet ligula. Nulla in justo a mi facilisis congue. Nunc nec turpis tortor. Aenean sollicitudin porttitor pulvinar. In sodales, arcu quis bibendum volutpat, urna lacus laoreet nisl, vel vulputate magna est nec purus. Vestibulum eget enim vel nulla sollicitudin vestibulum nec ac mauris.<\/p>\r\n\r\n<p>Nunc ex mauris, rhoncus a iaculis eget, bibendum nec nisl. Vestibulum auctor id justo a fermentum.<\/p>\r\n",
+            "format": "basic_html"
+        }
+    ]
+}
