@@ -1,11 +1,12 @@
 <template>
   <div v-if="!$fetchState.pending">
     <DruxtEntity
-      v-for="layout of layouts"
-      :key="`layout-${layout.uuid}`"
-      v-bind="layout"
+      v-for="paragraph of rootParagraphs"
+      :key="paragraph.uuid"
+      :type="paragraph.type"
+      :uuid="paragraph.id"
     >
-      <template #default="{ entity }">
+      <template v-if="isLayout(paragraph)" #default="{ entity }">
         <DruxtLayoutParagraph
           :entity="entity"
           :children="getChildren(entity)"
@@ -40,21 +41,40 @@ export default {
   },
 
   computed: {
-    layouts: ({ paragraphs }) => paragraphs.filter((o) => o.attributes.behavior_settings.layout_paragraphs.layout)
-      .map((o) => ({
-        type: o.type,
-        uuid: o.id
-      }))
+    /**
+     * Root level paragraphs.
+     *
+     * @return {object[]}
+     */
+    rootParagraphs: ({ paragraphs, isLayout }) => paragraphs.filter((o) => isLayout(o) || (!isLayout(o) && !(o.attributes.behavior_settings.layout_paragraphs || {}).parent_uuid)),
   },
 
   methods: {
+    /**
+     * Returns the child paragraphs of a layout paragraph entity.
+     *
+     * @param {object} entity - The paragraph layout entity.
+     *
+     * @return {object[]} - An array of child paragraph entities.
+     */
     getChildren(entity) {
       return this.paragraphs.filter(
         (o) =>
-          o.attributes.behavior_settings.layout_paragraphs.parent_uuid ===
+          (o.attributes.behavior_settings.layout_paragraphs || {}).parent_uuid ===
           entity.id
       )
     },
+
+    /**
+     * Returns true if the provided entity is a layout paragraph.
+     *
+     * @param {object} entity - The entity.
+     *
+     * @return {boolean}
+     */
+    isLayout(entity) {
+      return !!(entity.attributes.behavior_settings.layout_paragraphs || {}).layout
+    }
   },
 }
 </script>
