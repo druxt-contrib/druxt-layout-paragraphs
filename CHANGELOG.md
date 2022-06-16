@@ -1,5 +1,11 @@
 # druxt-layout-paragraphs
 
+## 0.3.0
+
+### Minor Changes
+
+- afadaae: feat(#35): Added support for root level paragraphs.
+
 ## 0.2.2
 
 ### Patch Changes
