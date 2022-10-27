@@ -24,6 +24,7 @@
     "drupal/core-project-message": "9.3.14",
     "drupal/core-recommended": "9.3.14",
     "drupal/druxt": "1.1.1",
+    "drupal/jsonapi_hypermedia": "^1.8",
     "drupal/layout_paragraphs": "1.0.0",
     "drupal/tome": "1.7.0",
     "drush/drush": "11.0.9"
