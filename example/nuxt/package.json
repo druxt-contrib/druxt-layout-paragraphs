@@ -8,6 +8,6 @@
     "druxt": "latest",
     "druxt-entity": "latest",
     "druxt-layout-paragraphs": "link:../..",
-    "nuxt": "latest"
+    "nuxt": "2.x"
   }
 }
