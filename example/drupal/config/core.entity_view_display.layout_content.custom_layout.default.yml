@@ -1,0 +1,17 @@
+uuid: 5f1147ed-e3e8-40c2-8b56-b59c8316473c
+langcode: en
+status: true
+dependencies:
+  config:
+    - layout_content.type.custom_layout
+id: layout_content.custom_layout.default
+targetEntityType: layout_content
+bundle: custom_layout
+mode: default
+content:
+  layout_regions:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

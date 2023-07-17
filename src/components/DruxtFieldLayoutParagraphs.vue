@@ -5,11 +5,13 @@
       :key="paragraph.uuid"
       :type="paragraph.type"
       :uuid="paragraph.id"
+      v-bind="{ ...$attrs }"
     >
       <template v-if="isLayout(paragraph)" #default="{ entity }">
         <DruxtLayoutParagraph
           :entity="entity"
           :children="getChildren(entity)"
+          v-bind="{ ...$attrs }"
         />
       </template>
     </DruxtEntity>

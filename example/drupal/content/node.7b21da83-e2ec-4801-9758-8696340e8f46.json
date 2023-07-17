@@ -18,7 +18,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2022-06-15T23:39:53+00:00",
+            "value": "2023-07-17T03:35:55+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -53,7 +53,7 @@
     ],
     "changed": [
         {
-            "value": "2022-06-15T23:39:53+00:00",
+            "value": "2023-07-17T03:35:55+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -109,6 +109,14 @@
         {
             "target_type": "paragraph",
             "target_uuid": "e7a4e78a-6409-47aa-8ce9-0ff468ce0872"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "87d5e680-a388-4049-bd81-53501fc793eb"
+        },
+        {
+            "target_type": "paragraph",
+            "target_uuid": "3c881aaf-c532-4a77-8bd0-ab4fcea8f909"
         }
     ]
 }
