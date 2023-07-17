@@ -35,15 +35,15 @@
     "@changesets/cli": "2.22.0",
     "@vue/test-utils": "1.3.0",
     "babel-core": "7.0.0-bridge.0",
-    "druxt": "0.19.2",
-    "druxt-entity": "^0.25.0",
+    "druxt": "0.22",
+    "druxt-entity": "0.28",
     "esbuild-jest": "0.5.0",
     "eslint": "8.16.0",
     "eslint-plugin-nuxt": "3.2.0",
     "jest": "27.5.1",
     "siroc": "0.16.0",
     "vue-jest": "3.0.7",
-    "vue-template-compiler": "2.6.14"
+    "vue-template-compiler": "2.7.14"
   },
   "peerDependencies": {},
   "publishConfig": {
