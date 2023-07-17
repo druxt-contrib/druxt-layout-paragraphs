@@ -67,7 +67,7 @@ export default {
      * @returns {ComponentOptions}
      */
     componentOptions: ({ entity }) => [
-      [(((((entity || {}).attributes || {}).behavior_settings || {}).layout_paragraphs || {}).layout || '').replace('layout_', '')],
+      [(((((entity || {}).attributes || {}).behavior_settings || {}).layout_paragraphs || {}).layout || '').replace('layout_', '').replace(':', '_')],
       ['default'],
     ],
 
@@ -109,8 +109,9 @@ export default {
       // Create a slot for all available regions.
       regions.forEach((region) => {
         const children = this.children.filter((o) => o.attributes.behavior_settings.layout_paragraphs.region === region)
-        slots[region] = () => h('div', children.map((o) => h('DruxtEntity',
+        slots[region] = (attrs) => h('div', children.map((o) => h('DruxtEntity',
           {
+            attrs,
             props: {
               type: o.type,
               uuid: o.id
@@ -121,7 +122,7 @@ export default {
 
       // If no default region, render all available region slots.
       if (!slots.default) {
-        slots.default = () => h('div', regions.map((region) => slots[region]()))
+        slots.default = (attrs) => h('div', regions.map((region) => slots[region](attrs)))
       }
 
       return slots

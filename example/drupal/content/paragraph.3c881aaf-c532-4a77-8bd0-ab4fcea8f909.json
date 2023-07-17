@@ -1,0 +1,58 @@
+{
+    "uuid": [
+        {
+            "value": "3c881aaf-c532-4a77-8bd0-ab4fcea8f909"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text",
+            "target_type": "paragraphs_type",
+            "target_uuid": "fcb7b2e5-821f-4bf2-9eff-22e289a4280c"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2023-07-17T03:35:50+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": {
+                "layout_paragraphs": {
+                    "region": "content",
+                    "parent_uuid": "87d5e680-a388-4049-bd81-53501fc793eb",
+                    "layout": "",
+                    "config": []
+                }
+            }
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "field_text": [
+        {
+            "value": "<p>Curabitur tincidunt erat non sollicitudin accumsan. In urna orci, tempor eu condimentum nec, commodo ut sem. In posuere lacus sit amet massa semper, et tincidunt mi euismod. Suspendisse egestas condimentum libero eget congue. Nunc mattis ac ligula vitae egestas. Nam sed vestibulum felis, et consectetur orci. In congue ornare felis vel convallis. Nam a molestie elit.<\/p>\r\n",
+            "format": "basic_html"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+uuid: abe4a023-8b46-4e58-9870-c9ead19ce6cf
+langcode: en
+status: true
+dependencies: {  }
+id: custom_layout
+label: 'Custom layout'
+revision: 1
+layout:
+  -
+    content: content

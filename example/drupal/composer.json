@@ -7,16 +7,23 @@
   "support": {
     "chat": "https://discord.druxtjs.org"
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/realityloop/tome_drush"
-    },
-    {
+  "repositories": {
+    "drupal": {
       "type": "composer",
-      "url": "https://packages.drupal.org/8"
-    }
-  ],
+      "url": "https://packages.drupal.org/8",
+      "exclude": [
+        "drupal/layout_content"
+    ]
+    },
+    "drupal/layout_content": {
+        "type": "git",
+        "url": "https://git.drupalcode.org/issue/layout_content-3288241.git"
+    },
+    "drupal-tome/tome_drush": {
+        "type": "vcs",
+        "url": "https://github.com/realityloop/tome_drush"
+      }
+  },
   "require": {
     "composer/installers": "2.1.1",
     "drupal-tome/tome_drush": "dev-feature/3-drush_11",
@@ -25,6 +32,7 @@
     "drupal/core-recommended": "9.3.14",
     "drupal/druxt": "1.1.1",
     "drupal/jsonapi_hypermedia": "^1.8",
+    "drupal/layout_content": "dev-3288241-layout_content-d10",
     "drupal/layout_paragraphs": "1.0.0",
     "drupal/tome": "1.7.0",
     "drush/drush": "11.0.9"

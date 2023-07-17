@@ -18,3 +18,4 @@ behavior_plugins:
       layout_twocol_bricks: 'Two column bricks'
       layout_threecol_25_50_25: 'Three column 25/50/25'
       layout_threecol_33_34_33: 'Three column 33/34/33'
+      'layout_content__custom_layout:custom_layout': 'Custom layout'

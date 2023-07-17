@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>DruxtLayoutParagraphs example</h1>
-    <DruxtEntity mode="default" type="node--page" :uuid="uuid" />
+    <DruxtEntity mode="default" type="node--page" :uuid="uuid" :test="true" />
   </div>
 </template>
 
