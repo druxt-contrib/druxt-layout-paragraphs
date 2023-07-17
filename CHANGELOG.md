@@ -1,5 +1,11 @@
 # druxt-layout-paragraphs
 
+## 0.4.0
+
+### Minor Changes
+
+- ef9916b: feat(#47): added support for Custom Layouts module
+
 ## 0.3.0
 
 ### Minor Changes
@@ -55,7 +61,7 @@
   <script>
     import { DruxtLayoutParagraphMixin } from "druxt-layout-paragraphs";
     export default {
-      mixins: [DruxtLayoutParagraphMixin]
+      mixins: [DruxtLayoutParagraphMixin],
     };
   </script>
   ```
