@@ -42,7 +42,7 @@ export default {
       const { data } = await this.$druxt.axios.get(href)
       this.paragraphs = data.data
     } catch(err) {
-      console.error(err.message, href)
+      throw(err)
     }
   },
 
