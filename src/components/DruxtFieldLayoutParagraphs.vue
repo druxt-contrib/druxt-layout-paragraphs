@@ -27,7 +27,7 @@ export default {
   mixins: [DruxtFieldMixin],
 
   data: () => ({
-    paragraphs: undefined,
+    paragraphs: [],
   }),
 
   async fetch() {
@@ -38,8 +38,12 @@ export default {
       href = href.replace(this.$druxt.settings.baseUrl, '')
     }
 
-    const { data } = await this.$druxt.axios.get(href)
-    this.paragraphs = data.data
+    try {
+      const { data } = await this.$druxt.axios.get(href)
+      this.paragraphs = data.data
+    } catch(err) {
+      console.error(err.message, href)
+    }
   },
 
   computed: {
@@ -48,7 +52,7 @@ export default {
      *
      * @return {object[]}
      */
-    rootParagraphs: ({ paragraphs, isLayout }) => paragraphs.filter((o) => isLayout(o) || (!isLayout(o) && !(o.attributes.behavior_settings.layout_paragraphs || {}).parent_uuid)),
+    rootParagraphs: ({ paragraphs, isLayout }) => (paragraphs || []).filter((o) => isLayout(o) || (!isLayout(o) && !(o.attributes.behavior_settings.layout_paragraphs || {}).parent_uuid)),
   },
 
   methods: {
