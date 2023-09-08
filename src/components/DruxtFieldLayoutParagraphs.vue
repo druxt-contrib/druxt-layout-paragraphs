@@ -7,7 +7,10 @@
       :uuid="paragraph.id"
       v-bind="{ ...$attrs }"
     >
-      <template v-if="isLayout(paragraph)" #default="{ entity }">
+      <template
+        v-if="isLayout(paragraph)"
+        #default="{ entity }"
+      >
         <DruxtLayoutParagraph
           :entity="entity"
           :children="getChildren(entity)"
@@ -38,12 +41,8 @@ export default {
       href = href.replace(this.$druxt.settings.baseUrl, '')
     }
 
-    try {
-      const { data } = await this.$druxt.axios.get(href)
-      this.paragraphs = data.data
-    } catch(err) {
-      throw(err)
-    }
+    const { data } = await this.$druxt.axios.get(href)
+    this.paragraphs = data.data
   },
 
   computed: {
