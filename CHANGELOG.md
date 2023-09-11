@@ -1,5 +1,11 @@
 # druxt-layout-paragraphs
 
+## 0.4.1
+
+### Patch Changes
+
+- fix(#51): prevent error if backend data unavailable
+
 ## 0.4.0
 
 ### Minor Changes
