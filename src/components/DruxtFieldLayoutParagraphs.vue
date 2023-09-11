@@ -7,7 +7,10 @@
       :uuid="paragraph.id"
       v-bind="{ ...$attrs }"
     >
-      <template v-if="isLayout(paragraph)" #default="{ entity }">
+      <template
+        v-if="isLayout(paragraph)"
+        #default="{ entity }"
+      >
         <DruxtLayoutParagraph
           :entity="entity"
           :children="getChildren(entity)"
@@ -27,7 +30,7 @@ export default {
   mixins: [DruxtFieldMixin],
 
   data: () => ({
-    paragraphs: undefined,
+    paragraphs: [],
   }),
 
   async fetch() {
@@ -48,7 +51,7 @@ export default {
      *
      * @return {object[]}
      */
-    rootParagraphs: ({ paragraphs, isLayout }) => paragraphs.filter((o) => isLayout(o) || (!isLayout(o) && !(o.attributes.behavior_settings.layout_paragraphs || {}).parent_uuid)),
+    rootParagraphs: ({ paragraphs, isLayout }) => (paragraphs || []).filter((o) => isLayout(o) || (!isLayout(o) && !(o.attributes.behavior_settings.layout_paragraphs || {}).parent_uuid)),
   },
 
   methods: {
