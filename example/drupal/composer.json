@@ -28,7 +28,7 @@
     "composer/installers": "2.2.0",
     "drupal-tome/tome_drush": "dev-feature/3-drush_11",
     "drupal/core-composer-scaffold": "9.5.10",
-    "drupal/core-project-message": "9.5.10",
+    "drupal/core-project-message": "10.3.1",
     "drupal/core-recommended": "9.5.10",
     "drupal/druxt": "1.2.0",
     "drupal/jsonapi_hypermedia": "^1.9.0",
