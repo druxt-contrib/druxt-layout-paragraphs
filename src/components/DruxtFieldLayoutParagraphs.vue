@@ -2,7 +2,7 @@
   <div v-if="!$fetchState.pending">
     <DruxtEntity
       v-for="paragraph of rootParagraphs"
-      :key="paragraph.uuid"
+      :key="paragraph.id"
       :type="paragraph.type"
       :uuid="paragraph.id"
       v-bind="{ ...$attrs }"
