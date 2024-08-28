@@ -33,7 +33,7 @@
     "drupal/druxt": "1.2.0",
     "drupal/jsonapi_hypermedia": "^1.9.0",
     "drupal/layout_content": "dev-3288241-layout_content-d10",
-    "drupal/layout_paragraphs": "1.0.0",
+    "drupal/layout_paragraphs": "2.1.0",
     "drupal/tome": "1.11.0",
     "drush/drush": "11.6.0"
   },
