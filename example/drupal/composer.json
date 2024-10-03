@@ -38,7 +38,7 @@
     "drush/drush": "11.6.0"
   },
   "require-dev": {
-    "drupal/core-dev": "9.5.10"
+    "drupal/core-dev": "11.0.5"
   },
   "conflict": {
     "drupal/drupal": "*"
