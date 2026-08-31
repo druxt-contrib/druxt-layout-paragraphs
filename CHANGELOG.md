@@ -1,40 +1,40 @@
 # druxt-layout-paragraphs
 
-## 0.4.1
+## 0.4.1 - 2023-09-11
 
 ### Patch Changes
 
-- fix(#51): prevent error if backend data unavailable
+- Prevented error if backend data unavailable. ([#51](https://github.com/druxt-contrib/druxt-layout-paragraphs/issues/51))
 
-## 0.4.0
-
-### Minor Changes
-
-- ef9916b: feat(#47): added support for Custom Layouts module
-
-## 0.3.0
+## 0.4.0 - 2023-07-17
 
 ### Minor Changes
 
-- afadaae: feat(#35): Added support for root level paragraphs.
+- Added support for Custom Layouts module. ([#47](https://github.com/druxt-contrib/druxt-layout-paragraphs/issues/47), [`ef9916b`](https://github.com/druxt-contrib/druxt-layout-paragraphs/commit/ef9916b))
 
-## 0.2.2
+## 0.3.0 - 2022-06-16
+
+### Minor Changes
+
+- Added support for root level paragraphs. ([#35](https://github.com/druxt-contrib/druxt-layout-paragraphs/issues/35), [`afadaae`](https://github.com/druxt-contrib/druxt-layout-paragraphs/commit/afadaae))
+
+## 0.2.2 - 2022-05-25
 
 ### Patch Changes
 
-- 6b51a22: Fixed issue with custom Axios instance and API proxy.
+- Fixed issue with custom Axios instance and API proxy. ([`6b51a22`](https://github.com/druxt-contrib/druxt-layout-paragraphs/commit/6b51a22))
 
-## 0.2.1
+## 0.2.1 - 2022-03-28
 
 ### Patch Changes
 
-- 0fa3a3e: Fix incorrectly hardcoded layout paragraph resource type.
+- Fixed incorrectly hardcoded layout paragraph resource type. ([`0fa3a3e`](https://github.com/druxt-contrib/druxt-layout-paragraphs/commit/0fa3a3e))
 
-## 0.2.0
+## 0.2.0 - 2022-03-25
 
 ### Minor Changes
 
-- 0aa3b3c: Added scoped slots for layout regions.
+- Added scoped slots for layout regions. ([`0aa3b3c`](https://github.com/druxt-contrib/druxt-layout-paragraphs/commit/0aa3b3c))
 
   Example:
 
@@ -59,7 +59,7 @@
   </template>
   ```
 
-- fd2ed0e: Added DruxtLayoutParagraphMixin.
+- Added DruxtLayoutParagraphMixin. ([`fd2ed0e`](https://github.com/druxt-contrib/druxt-layout-paragraphs/commit/fd2ed0e))
 
   Example:
 
@@ -72,7 +72,7 @@
   </script>
   ```
 
-## 0.1.0
+## 0.1.0 - 2022-03-04
 
 ### Minor Changes
 

@@ -78,5 +78,6 @@
     "outputDirectory": "reports/junit",
     "outputName": "junit.xml"
   },
-  "packageManager": "yarn@1.22.22"
+  "packageManager": "yarn@1.22.22",
+  "repository": "github:druxt-contrib/druxt-layout-paragraphs"
 }
