@@ -14,19 +14,21 @@ const component = {
 describe('DruxtLayoutParagraphMixin', () => {
   test('Default', async () => {
     const propsData = {
-      children: [{
-        attributes: {
-          behavior_settings: {
-            layout_paragraphs: {
-              region: 'test'
-            }
-          }
-        }
-      }],
+      children: [
+        {
+          attributes: {
+            behavior_settings: {
+              layout_paragraphs: {
+                region: 'test',
+              },
+            },
+          },
+        },
+      ],
       entity: {
         type: 'paragraph--section',
         attributes: {},
-      }
+      },
     }
     const wrapper = mount(component, { localVue, propsData })
     expect(wrapper.vm.children).toStrictEqual(expect.any(Array))

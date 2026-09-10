@@ -12,23 +12,23 @@ const mockData = {
       attributes: {
         behavior_settings: {
           layout_paragraphs: {
-            layout: 'twocol'
-          }
-        }
+            layout: 'twocol',
+          },
+        },
       },
       type: 'paragraph--layout_paragraphs',
-      id: 'test-layout'
+      id: 'test-layout',
     },
     {
       attributes: {
         behavior_settings: {
           layout_paragraphs: {
-            parent_uuid: 'test-layout'
-          }
-        }
+            parent_uuid: 'test-layout',
+          },
+        },
       },
       type: 'paragraph--text',
-      id: 'test-child'
+      id: 'test-child',
     },
     {
       attributes: {
@@ -37,34 +37,31 @@ const mockData = {
             layout: '',
             parent_uuid: '',
           },
-        }
+        },
       },
       type: 'paragraph--text',
-      id: 'test-root'
+      id: 'test-root',
     },
-  ]
+  ],
 }
 
 // Mount the Vue component.
-const mountComponent = function() {
-  return mount(
-    DruxtFieldComponent,
-    {
-      localVue,
-      mocks: {
-        $fetchState: { pending: true },
-        $druxt: {
-          axios: { get: jest.fn(() => ({ data: mockData })) },
-          settings: { proxy: false }
-        },
-        $nuxt: { context: {} }
+const mountComponent = function () {
+  return mount(DruxtFieldComponent, {
+    localVue,
+    mocks: {
+      $fetchState: { pending: true },
+      $druxt: {
+        axios: { get: jest.fn(() => ({ data: mockData })) },
+        settings: { proxy: false },
       },
-      propsData: {
-        schema: {},
-        value: { links: { related: { href: '' } } }
-      }
-    }
-  )
+      $nuxt: { context: {} },
+    },
+    propsData: {
+      schema: {},
+      value: { links: { related: { href: '' } } },
+    },
+  })
 }
 
 describe('DruxtFieldLayoutParagraphs', () => {
@@ -78,7 +75,7 @@ describe('DruxtFieldLayoutParagraphs', () => {
     // Assert data and props are as expected.
     expect(wrapper.vm.rootParagraphs).toStrictEqual([
       mockData.data[0],
-      mockData.data[2]
+      mockData.data[2],
     ])
 
     expect(wrapper.vm.isLayout(mockData.data[0])).toBe(true)

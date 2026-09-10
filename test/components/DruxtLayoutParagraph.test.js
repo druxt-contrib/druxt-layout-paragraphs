@@ -9,26 +9,23 @@ const localVue = createLocalVue()
 localVue.component('DruxtWrapper', DruxtWrapper)
 
 // Mount the Vue component.
-const mountComponent = function() {
-  return mount(
-    DruxtModuleComponent,
-    {
-      localVue,
-      mocks: {
-        $fetchState: { pending: true },
-        $nuxt: {
-          context: {}
-        },
-        $route: { meta: {} }
+const mountComponent = function () {
+  return mount(DruxtModuleComponent, {
+    localVue,
+    mocks: {
+      $fetchState: { pending: true },
+      $nuxt: {
+        context: {},
       },
-      props: {
-        entity: {
-          type: 'paragraph--section',
-          attributes: {},
-        }
-      }
-    }
-  )
+      $route: { meta: {} },
+    },
+    props: {
+      entity: {
+        type: 'paragraph--section',
+        attributes: {},
+      },
+    },
+  })
 }
 
 describe('DruxtLayoutParagraph', () => {
@@ -61,15 +58,17 @@ describe('DruxtLayoutParagraph', () => {
 
     // Assert slots.
     const h = jest.fn()
-    const children = [{
-      attributes: {
-        behavior_settings: {
-          layout_paragraphs: {
-            region: 'test'
-          }
-        }
-      }
-    }]
+    const children = [
+      {
+        attributes: {
+          behavior_settings: {
+            layout_paragraphs: {
+              region: 'test',
+            },
+          },
+        },
+      },
+    ]
     const slots = wrapper.vm.$options.druxt.slots.call({ children }, h)
     expect(Object.keys(slots)).toStrictEqual(['test', 'default'])
   })

@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+# The fast half of CI: every linter, then the unit tests.
+#
+# The end-to-end and visual suites are not here. They need the example
+# application built and served, which is minutes rather than seconds, and a
+# hook that slow gets bypassed with --no-verify until it may as well not exist.
+set -e
+npm run --silent lint
+npm test --silent

@@ -9,9 +9,9 @@
 
 ## Links
 
-- DruxtJS: https://druxtjs.org
-- Community Discord server: https://discord.druxtjs.org
-- Layout Paragraphs project page: https://www.drupal.org/project/layout_paragraphs
+- [DruxtJS](https://druxtjs.org)
+- [Community Discord server](https://discord.druxtjs.org)
+- [Layout Paragraphs project page](https://www.drupal.org/project/layout_paragraphs)
 
 ## Features
 
@@ -21,6 +21,7 @@
     - `DruxtLayoutParagraph[Layout]`
     - `DruxtLayoutParagraphDefault`
   - Slots per region, e.g. `top`, `first`, `second`, `bottom`
+
 ## Install
 
 `$ npm install druxt-layout-paragraphs`
@@ -31,13 +32,10 @@ Add module to `nuxt.config.js`
 
 ```js
 module.exports = {
-  buildModules: [
-    'druxt-entity',
-    'druxt-layout-paragraphs'
-  ],
+  buildModules: ['druxt-entity', 'druxt-layout-paragraphs'],
   druxt: {
-    baseUrl: 'https://demo-api.druxtjs.org'
-  }
+    baseUrl: 'https://demo-api.druxtjs.org',
+  },
 }
 ```
 
@@ -45,4 +43,4 @@ module.exports = {
 
 1. Download, install and setup the [Layout Paragraphs module](https://www.drupal.org/project/layout_paragraphs).
 2. Set the **Layout Paragraphs** field formatter on the Layout Paragraphs fields.
-  ![Layout Paragraphs field formatter](./docs/images/field-formatter.png)
+   ![Layout Paragraphs field formatter](./docs/images/field-formatter.png)
