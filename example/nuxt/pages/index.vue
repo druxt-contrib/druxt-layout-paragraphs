@@ -8,7 +8,7 @@
 <script>
 export default {
   data: () => ({
-    uuid: '7b21da83-e2ec-4801-9758-8696340e8f46'
-  })
+    uuid: '7b21da83-e2ec-4801-9758-8696340e8f46',
+  }),
 }
 </script>

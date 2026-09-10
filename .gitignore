@@ -104,3 +104,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Written by the tooling the repository standard brings in.
+coverage/
+reports/
+.vale/
+.yarn-cache/

@@ -1,36 +1,115 @@
+---
 name: CI
+
+# The same lint and test set as .gitlab-ci.yml. This repository is mirrored and
+# releases are cut here, so both hosts have to agree. Nothing on this side lints
+# this file: the GitLab pipeline runs actionlint over it in return.
 
 on:
   push:
-    branches: [ main, develop ]
-
+    branches: [main, develop]
+  # No branch filter: a pull request into any base runs CI. A stacked pull
+  # request targets the branch below it rather than develop, and a filter here
+  # would leave every one of them untested but green.
   pull_request:
-    branches: [ main, develop ]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v3
+      # Actions are pinned to commit SHAs, not tags. A tag is a mutable
+      # reference to code that runs with this repository's credentials.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
+        with:
+          persist-credentials: false
+          # The attribution and prose checks read the pull request's own
+          # commits, so its base has to be present.
+          fetch-depth: 0
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
 
-    - run: yarn
+      # corepack reads the packageManager field, so the manager the lockfile was
+      # written by is the one that installs it, and this file never names one.
+      - run: corepack enable && corepack prepare --activate
 
-    - run: yarn build
+      - run: yarn install --frozen-lockfile
 
-    - run: yarn lint
+      - run: yarn lint:js
 
-    - run: yarn test --reporters=jest-junit --runInBand
+      - run: yarn lint:md
 
-    - name: Codecov
-      uses: codecov/codecov-action@v3.1.4
+      - run: yarn lint:cspell
+
+      - run: yarn lint:knip
+
+      # This repository is public, and its README and example are what people
+      # copy. A host only the author can reach must never reach a tracked file.
+      - run: yarn lint:private
+
+      # The work is the author's. No commit, pull request description or
+      # tracked file may credit an AI tool as author, co-author or generator.
+      - name: Check for AI attribution
+        env:
+          ATTRIBUTION_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          MERGE_REQUEST_DESCRIPTION: ${{ github.event.pull_request.body }}
+        run: bash .gitlab/scripts/check-attribution.sh
+
+      # Project voice over the markdown a change touches, its commit messages
+      # and the pull request description.
+      - name: Lint prose
+        env:
+          PROSE_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          MERGE_REQUEST_DESCRIPTION: ${{ github.event.pull_request.body }}
+          PROSE_LINT_GLOB: "!{.changeset/**,example/drupal/**,CHANGELOG.md}"
+        run: |
+          bash .gitlab/scripts/install-vale.sh .vale/bin .vale/styles
+          bash .gitlab/scripts/lint-prose.sh
+
+      - run: yarn lint:audit
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+
+      - run: corepack enable && corepack prepare --activate
+
+      - run: yarn install --frozen-lockfile
+
+      - run: yarn build
+
+      # The coverage floor in jest.config.js is what fails here. Codecov below
+      # adds the per-pull-request view on top and is not the gate.
+      - run: yarn test --reporters=default --reporters=jest-junit --runInBand
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4
+        if: always()
+        with:
+          name: test-results
+          path: reports/junit/
+
+      - name: Upload coverage to Codecov
+        if: ${{ env.CODECOV_TOKEN != '' }}
+        uses: codecov/codecov-action@b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238  # v4
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage

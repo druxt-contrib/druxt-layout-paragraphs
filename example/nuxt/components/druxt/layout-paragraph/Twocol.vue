@@ -12,7 +12,7 @@
 <script>
 import { DruxtLayoutParagraphMixin } from 'druxt-layout-paragraphs'
 export default {
-  mixins: [DruxtLayoutParagraphMixin]
+  mixins: [DruxtLayoutParagraphMixin],
 }
 </script>
 

@@ -1,0 +1,45 @@
+{
+  "files": ["**/*.{js,mjs,vue,json,jsonc,md,yml,yaml}"],
+  "dictionaryDefinitions": [
+    {
+      "name": "project-words",
+      "path": "./.cspell-project-words.txt"
+    }
+  ],
+  "dictionaries": ["project-words", "bash", "misc", "node", "softwareTerms"],
+  "ignorePaths": [
+    ".git/",
+    "node_modules/",
+    "**/node_modules/",
+    "dist/",
+    "coverage/",
+    "reports/",
+    "test-results/",
+    "playwright-report/",
+    "example/drupal/",
+    "**/CHANGELOG.md",
+    "*.lock",
+    "package-lock.json",
+    "*.svg",
+    "*.png",
+    "*.snap",
+    ".vale/",
+    "example/drupal/vendor/",
+    "example/drupal/web/",
+    "example/nuxt/dist/",
+    "example/nuxt/.nuxt/"
+  ],
+  "useGitignore": true,
+  "words": [
+    "coderabbit",
+    "deasync",
+    "distutils",
+    "docroot",
+    "drush",
+    "libwebp",
+    "phpize",
+    "setuptools",
+    "trixie",
+    "webp"
+  ]
+}

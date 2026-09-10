@@ -20,7 +20,7 @@ const DruxtLayoutParagraphMixin = {
      *
      * @type {object[]}
      */
-     children: {
+    children: {
       type: Array,
       default: undefined,
     },
@@ -34,7 +34,7 @@ const DruxtLayoutParagraphMixin = {
       type: Object,
       required: true,
     },
-  }
+  },
 }
 
 export { DruxtLayoutParagraphMixin }

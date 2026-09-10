@@ -12,7 +12,7 @@ import { join } from 'path'
 // eslint-disable-next-line no-unused-vars
 const DruxtLayoutParagraphNuxtModule = function (moduleOptions = {}) {
   // Register components directories.
-  this.nuxt.hook('components:dirs', dirs => {
+  this.nuxt.hook('components:dirs', (dirs) => {
     dirs.push({ path: join(__dirname, 'components') })
   })
 }
@@ -25,4 +25,4 @@ export default DruxtLayoutParagraphNuxtModule
  * @exports DruxtLayoutParagraphMixin
  * @see {@link ./mixin|DruxtLayoutParagraphMixin}
  */
- export { DruxtLayoutParagraphMixin } from './mixin'
+export { DruxtLayoutParagraphMixin } from './mixin'

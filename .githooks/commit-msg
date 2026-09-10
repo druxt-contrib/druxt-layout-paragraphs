@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+# Conventional Commits, checked before the commit exists rather than in CI.
+#
+# These repositories squash-merge, so the merge request or pull request title
+# becomes the commit subject too. A prose title breaks the next push to the
+# target branch for everyone, not just its author.
+exec npx --no -- commitlint --edit "$1"

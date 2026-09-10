@@ -7,10 +7,7 @@
       :uuid="paragraph.id"
       v-bind="{ ...$attrs }"
     >
-      <template
-        v-if="isLayout(paragraph)"
-        #default="{ entity }"
-      >
+      <template v-if="isLayout(paragraph)" #default="{ entity }">
         <DruxtLayoutParagraph
           :entity="entity"
           :children="getChildren(entity)"
@@ -37,7 +34,7 @@ export default {
     let { href } = this.model.links.related
 
     // Use API proxy if enabled.
-    if ((this.$druxt.settings.proxy || {}.api)) {
+    if (this.$druxt.settings.proxy || {}.api) {
       href = href.replace(this.$druxt.settings.baseUrl, '')
     }
 
@@ -51,7 +48,14 @@ export default {
      *
      * @return {object[]}
      */
-    rootParagraphs: ({ paragraphs, isLayout }) => (paragraphs || []).filter((o) => isLayout(o) || (!isLayout(o) && !(o.attributes.behavior_settings.layout_paragraphs || {}).parent_uuid)),
+    rootParagraphs: ({ paragraphs, isLayout }) =>
+      (paragraphs || []).filter(
+        (o) =>
+          isLayout(o) ||
+          (!isLayout(o) &&
+            !(o.attributes.behavior_settings.layout_paragraphs || {})
+              .parent_uuid)
+      ),
   },
 
   methods: {
@@ -65,8 +69,8 @@ export default {
     getChildren(entity) {
       return this.paragraphs.filter(
         (o) =>
-          (o.attributes.behavior_settings.layout_paragraphs || {}).parent_uuid ===
-          entity.id
+          (o.attributes.behavior_settings.layout_paragraphs || {})
+            .parent_uuid === entity.id
       )
     },
 
@@ -78,8 +82,9 @@ export default {
      * @return {boolean}
      */
     isLayout(entity) {
-      return !!(entity.attributes.behavior_settings.layout_paragraphs || {}).layout
-    }
+      return !!(entity.attributes.behavior_settings.layout_paragraphs || {})
+        .layout
+    },
   },
 }
 </script>
