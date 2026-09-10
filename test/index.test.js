@@ -2,7 +2,7 @@ import DruxtLayoutParagraphNuxtModule from '../src'
 import { DruxtLayoutParagraphMixin } from '../src'
 
 const options = {
-  baseUrl: 'https://demo-api.druxtjs.org',
+  baseUrl: 'https://cms.example.com',
   endpoint: '/jsonapi',
 }
 

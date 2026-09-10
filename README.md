@@ -34,7 +34,7 @@ Add module to `nuxt.config.js`
 module.exports = {
   buildModules: ['druxt-entity', 'druxt-layout-paragraphs'],
   druxt: {
-    baseUrl: 'https://demo-api.druxtjs.org',
+    baseUrl: 'https://cms.example.com',
   },
 }
 ```
