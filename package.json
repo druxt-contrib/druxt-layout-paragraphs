@@ -9,6 +9,7 @@
     "paragraphs",
     "nuxt"
   ],
+  "license": "MIT",
   "exports": {
     ".": {
       "require": "./dist/index.ssr.js",
