@@ -1,3 +1,10 @@
+<!-- vale off -->
+<!-- The alt text describes what the banner shows: the druxt-layout-paragraphs mark, name and description. The name-colon-description form trips ColonUsage. -->
+<a href="https://druxtjs.org">
+  <img src=".github/banner.svg" alt="druxt-layout-paragraphs: Layout Paragraphs module for Druxt">
+</a>
+<!-- vale on -->
+
 # DruxtLayoutParagraphs
 
 [![npm](https://badgen.net/npm/v/druxt-layout-paragraphs)](https://www.npmjs.com/package/druxt-layout-paragraphs)
