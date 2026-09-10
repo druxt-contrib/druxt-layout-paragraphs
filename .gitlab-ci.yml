@@ -1,0 +1,268 @@
+---
+# CI for the Druxt module template, and the shape every Druxt module repository
+# is expected to have. See the repository standard for what each job is for and
+# why it exists.
+#
+# GitHub Actions (.github/workflows/ci.yml) runs the same lint and test set,
+# because this repository is mirrored and releases are cut there. Keep the two
+# in step: nothing on the GitHub side lints that workflow, so lint:yaml here
+# runs actionlint over it in return.
+#
+# Secret scanning is gitleaks, not GitLab's Security/Secret-Detection template.
+# That template is an Ultimate-tier feature: on a non-Ultimate instance the
+# include produces no job at all, so the configuration reads as coverage while
+# scanning nothing.
+
+stages:
+  - lint
+  - test
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
+
+default:
+  tags: [docker]
+  timeout: 15m
+  before_script:
+    - 'section_start() { local n="$1" t="${2:-$1}"; printf "\e[0Ksection_start:%s:%s\r\e[0K%s\n" "$(date +%s)" "$n" "$t"; }'
+    - 'section_end() { printf "\e[0Ksection_end:%s:%s\r\e[0K\n" "$(date +%s)" "$1"; }'
+
+# Shared Node setup. `corepack prepare --activate` reads the packageManager
+# field rather than naming a manager here, so this block is identical in every
+# repository whatever it installs with. The cache is keyed by the lockfile
+# hash: a dependency bump misses once and hits thereafter.
+.node:
+  image: node:16.20.1
+  interruptible: true
+  cache:
+    key:
+      files:
+        - yarn.lock
+      prefix: node-16.20.1
+    paths:
+      - .yarn-cache/
+  before_script:
+    - !reference [default, before_script]
+    - corepack enable
+    - corepack prepare --activate
+    - yarn config set cache-folder .yarn-cache
+    - yarn install --frozen-lockfile
+
+lint:js:
+  extends: .node
+  stage: lint
+  script:
+    - section_start "eslint" "Linting sources, tests and scripts"
+    - yarn lint:js
+    - section_end "eslint"
+
+lint:md:
+  extends: .node
+  stage: lint
+  script:
+    - section_start "markdownlint" "Linting Markdown"
+    - yarn lint:md
+    - section_end "markdownlint"
+
+lint:cspell:
+  extends: .node
+  stage: lint
+  script:
+    - section_start "cspell" "Spell checking"
+    - yarn lint:cspell
+    - section_end "cspell"
+
+# This repository is public, and its README and example are what people copy to
+# start a module. A host only the author can reach must never reach a tracked
+# file.
+
+lint:private:
+  extends: .node
+  stage: lint
+  script:
+    - section_start "private-refs" "Checking for private host references"
+    - yarn lint:private
+    - section_end "private-refs"
+
+lint:knip:
+  extends: .node
+  stage: lint
+  script:
+    - section_start "knip" "Checking for unused and undeclared dependencies"
+    - yarn lint:knip
+    - section_end "knip"
+
+# Production only. A shipped runtime dependency is what actually reaches a
+# consumer; a devDependency advisory is worth knowing about and not worth
+# blocking a merge request on.
+
+lint:audit:
+  extends: .node
+  stage: lint
+  script:
+    - section_start "audit" "Auditing shipped dependencies"
+    - yarn lint:audit
+    - section_end "audit"
+
+# yamllint covers this file; actionlint covers the GitHub workflow, which
+# nothing on the GitHub side lints before a push.
+
+lint:yaml:
+  stage: lint
+  image: python:3.12-slim
+  interruptible: true
+  variables:
+    ACTIONLINT_VERSION: '1.7.12'
+    ACTIONLINT_SHA256: '8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8'
+  script:
+    - section_start "yamllint" "Linting YAML"
+    - pip install --quiet yamllint
+    - yamllint .gitlab-ci.yml .github/workflows/
+    - section_end "yamllint"
+    - section_start "actionlint" "Linting GitHub workflows"
+    - apt-get update -qq && apt-get install -y -qq curl > /dev/null
+    - curl -sSLo actionlint.tar.gz "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
+    - echo "${ACTIONLINT_SHA256}  actionlint.tar.gz" | sha256sum -c -
+    - tar -xzf actionlint.tar.gz actionlint
+    - ./actionlint -color
+    - section_end "actionlint"
+
+# The merge request's own commits, not the whole history. These repositories
+# squash-merge, so a prose title becomes the commit subject and breaks the next
+# push to the target branch.
+
+lint:commit:
+  extends: .node
+  stage: lint
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  script:
+    - section_start "commitlint" "Validating commit messages"
+    - git fetch origin "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" --depth 50
+    - yarn lint:commit -- --from "origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" --to HEAD --verbose
+    - section_end "commitlint"
+
+# The work is the author's. No commit, merge request description or tracked
+# file may credit an AI tool as author, co-author or generator. Full history,
+# because the range is the merge request's own and its base has to be present.
+
+lint:attribution:
+  image: node:16.20.1
+  stage: lint
+  interruptible: true
+  variables:
+    GIT_DEPTH: 0
+  script:
+    - section_start "attribution" "Checking for AI attribution"
+    - bash .gitlab/scripts/check-attribution.sh
+    - section_end "attribution"
+
+# Project voice over the markdown a change touches, its commit messages and the
+# merge request description. The changesets README and the Drupal scaffold are third-party text.
+
+lint:prose:
+  image: node:16.20.1
+  stage: lint
+  interruptible: true
+  variables:
+    GIT_DEPTH: 0
+    PROSE_LINT_GLOB: "!{.changeset/**,example/drupal/**,CHANGELOG.md}"
+  cache:
+    key: vale-3.17.1
+    paths:
+      - .vale/
+  script:
+    - section_start "prose" "Linting prose with Vale"
+    - bash .gitlab/scripts/install-vale.sh .vale/bin .vale/styles
+    - bash .gitlab/scripts/lint-prose.sh
+    - section_end "prose"
+
+#
+# --- Test ---
+#
+
+test:unit:
+  extends: .node
+  stage: test
+  needs: []
+  script:
+    - section_start "build" "Building the module"
+    - yarn build
+    - section_end "build"
+    - section_start "jest" "Running unit tests"
+    - yarn test --reporters=default --reporters=jest-junit --runInBand
+    - section_end "jest"
+  artifacts:
+    when: always
+    reports:
+      junit: reports/junit/junit.xml
+    paths:
+      - coverage/
+    expire_in: 1 week
+  # Puts the coverage percentage in the merge request widget, where a drop is
+  # visible to a reviewer who was never going to open the job log.
+  coverage: '/All files\s*\|\s*([\d.]+)/'
+
+#
+# --- Example ---
+#
+# The module is built, the example installs it by path, the backend is
+# provisioned from scratch on SQLite, and the example is generated against it.
+# The generated example is what the end-to-end, visual and preview jobs read.
+#
+
+secret-detection:
+  stage: lint
+  image: alpine:3.21
+  interruptible: true
+  dependencies: []
+  variables:
+    GITLEAKS_VERSION: '8.30.1'
+    GITLEAKS_SHA256: '551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb'
+  script:
+    - section_start "gitleaks" "Scanning for committed secrets"
+    - apk add --no-cache curl tar git > /dev/null
+    - curl -sSLo gitleaks.tar.gz "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+    - echo "${GITLEAKS_SHA256}  gitleaks.tar.gz" | sha256sum -c -
+    - tar -xzf gitleaks.tar.gz gitleaks
+    - ./gitleaks detect --source . --no-banner --redact --verbose
+    - section_end "gitleaks"
+    # A scan that finds nothing looks identical to a scan that cannot find
+    # anything. Plant three credentials outside the repository and assert all
+    # three are reported, so a bad download, a config change or a widened
+    # allowlist fails the job instead of passing it quietly.
+    #
+    # Each value is split across its own prefix so no fragment in this file
+    # triggers the rule it is meant to exercise: the repository scan above runs
+    # over this file too, and a canary that flags itself would need an ignore
+    # entry, which is the thing being guarded against.
+    #
+    # Fixed values, not generated ones. Detection is keyword-driven rather than
+    # entropy-driven, so a generated credential fires only sometimes and
+    # presents as flake. A value verified once keeps firing.
+    #
+    # Invented, not copied from any vendor's documentation: gitleaks allowlists
+    # documentation keys, and a canary built from one is inert in exactly the
+    # way this check exists to catch.
+    - section_start "canary" "Checking that the scanner still detects"
+    - |
+      canary="$(mktemp -d)"
+      pat="gh""p_8fK2mQ7xR4tV9nB3jH6yW1sZ5cD8gL0aE4uY"
+      stripe="sk""_live_51aBcD2eFgH3iJkL4mNoP5qR6sTuV7wXyZ8a"
+      slack="xo""xb-263594753641-2529420432-J1n4h6a9pQrStUvWxYz1AbCd"
+      printf 'a = "%s"\nb = "%s"\nc = "%s"\n' "$pat" "$stripe" "$slack" > "$canary/canary.txt"
+      ./gitleaks detect --no-git --source "$canary" --no-banner --redact \
+        --report-format json --report-path "$canary/report.json" || true
+      found=$(grep -c '"RuleID"' "$canary/report.json" || true)
+      rm -rf "$canary"
+      if [ "$found" != "3" ]; then
+        echo "The canary planted 3 credentials and gitleaks reported $found."
+        echo "The scan above proves nothing while this is true."
+        exit 1
+      fi
+      echo "Canary detected 3 of 3 planted credentials."
+    - section_end "canary"
