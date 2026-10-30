@@ -138,11 +138,14 @@ lint:yaml:
 lint:commit:
   extends: .node
   stage: lint
+  # Full history, so the merge base is present and no commit is cut off.
+  variables:
+    GIT_DEPTH: 0
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
     - section_start "commitlint" "Validating commit messages"
-    - git fetch origin "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" --depth 50
+    - git fetch origin "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
     - yarn lint:commit -- --from "origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" --to HEAD --verbose
     - section_end "commitlint"
 

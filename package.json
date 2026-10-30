@@ -27,7 +27,7 @@
     "build:watch": "siroc build --watch",
     "changeset": "changeset",
     "hooks:install": "git config core.hooksPath .githooks",
-    "postinstall": "node scripts/postinstall.mjs",
+    "prepare": "node scripts/postinstall.mjs",
     "lint": "yarn lint:js && yarn lint:format && yarn lint:md && yarn lint:cspell && yarn lint:private && yarn lint:attribution && yarn lint:knip",
     "lint:attribution": "bash .gitlab/scripts/check-attribution.sh",
     "lint:audit": "yarn audit --groups dependencies --level high",
