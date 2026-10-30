@@ -7,10 +7,12 @@
 
 # DruxtLayoutParagraphs
 
-[![npm](https://badgen.net/npm/v/druxt-layout-paragraphs)](https://www.npmjs.com/package/druxt-layout-paragraphs)
-[![CI](https://github.com/druxt-contrib/druxt-layout-paragraphs/actions/workflows/ci.yml/badge.svg)](https://github.com/druxt-contrib/druxt-layout-paragraphs/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/druxt-layout-paragraphs)](https://www.npmjs.com/package/druxt-layout-paragraphs)
+[![npm@dev](https://img.shields.io/npm/v/druxt-layout-paragraphs/dev)](https://www.npmjs.com/package/druxt-layout-paragraphs/v/dev)
+[![CI](https://github.com/druxt-contrib/druxt-layout-paragraphs/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/druxt-contrib/druxt-layout-paragraphs/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/druxt-contrib/druxt-layout-paragraphs/branch/develop/graph/badge.svg)](https://codecov.io/gh/druxt-contrib/druxt-layout-paragraphs)
 [![Known Vulnerabilities](https://snyk.io/test/github/druxt-contrib/druxt-layout-paragraphs/badge.svg?targetFile=package.json)](https://snyk.io/test/github/druxt-contrib/druxt-layout-paragraphs?targetFile=package.json)
-[![codecov](https://codecov.io/gh/druxt-contrib/druxt-layout-paragraphs/branch/main/graph/badge.svg?token=TwCLJOKEjm)](https://codecov.io/gh/druxt-contrib/druxt-layout-paragraphs)
+[![Discord](https://img.shields.io/discord/753866667590680587?label=discord&logo=discord&logoColor=white)](https://discord.druxtjs.org)
 
 > Druxt support for the Drupal Layout Paragraphs module
 
