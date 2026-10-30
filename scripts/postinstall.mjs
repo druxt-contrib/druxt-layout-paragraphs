@@ -18,16 +18,30 @@
  */
 
 import { execFileSync } from 'node:child_process'
+import { realpathSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 
+const root = realpathSync(fileURLToPath(new URL('..', import.meta.url)))
+
+let top
 try {
-  execFileSync('git', ['rev-parse', '--git-dir'], { stdio: 'ignore' })
+  top = execFileSync('git', ['rev-parse', '--show-toplevel'], {
+    cwd: root,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+  }).trim()
 } catch {
   // Not a git checkout: a published tarball, or a vendored copy. Nothing to do.
   process.exit(0)
 }
 
+// A vendored copy inside another checkout finds that checkout's repository.
+// Its hooks are not this package's to change.
+if (realpathSync(top) !== root) process.exit(0)
+
 try {
   execFileSync('git', ['config', 'core.hooksPath', '.githooks'], {
+    cwd: root,
     stdio: 'ignore',
   })
   console.log('Git hooks enabled from .githooks/')

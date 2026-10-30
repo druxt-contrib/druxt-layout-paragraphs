@@ -104,11 +104,10 @@ if [ "$files_only" -eq 0 ]; then
     payload="$(curl -sSf --header "PRIVATE-TOKEN: ${GITLAB_API_TOKEN}" "$url" 2>/dev/null || true)"
     if [ -n "$payload" ]; then
       if command -v python3 >/dev/null 2>&1; then
-        description="$(printf '%s' "$payload" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("description") or "")')"
+        description="$(printf '%s' "$payload" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("description") or "")')" && have_description=1
       elif command -v node >/dev/null 2>&1; then
-        description="$(printf '%s' "$payload" | node -e 'let d="";process.stdin.on("data",c=>d+=c).on("end",()=>process.stdout.write(JSON.parse(d).description||""))')"
+        description="$(printf '%s' "$payload" | node -e 'let d="";process.stdin.on("data",c=>d+=c).on("end",()=>process.stdout.write(JSON.parse(d).description||""))')" && have_description=1
       fi
-      have_description=1
     fi
   fi
 
