@@ -20,6 +20,12 @@
     "example/drupal/web/**",
     "example/nuxt/dist/**",
     "example/nuxt/.nuxt/**",
+    // The documentation site stages copies of docs/ to build from, and writes
+    // its output beside them. Both are generated, and markdownlint does not
+    // read .gitignore, so a local docs build otherwise fails this lint on a
+    // file nobody wrote.
+    "docs-site/.docs-content/**",
+    "docs-site/dist/**",
     ".vale/**",
     "CHANGELOG.md",
     ".changeset/**"
