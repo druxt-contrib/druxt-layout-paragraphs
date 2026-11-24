@@ -1,0 +1,112 @@
+---
+name: Docs
+
+# Builds the documentation site and publishes it to GitHub Pages.
+#
+# The site reads this repository's README and docs/ in place, so a change to
+# either rebuilds it. Nothing here is written into the repository: the pages
+# are staged inside the site's own build.
+#
+# Pages serves a project site from /<repository>/, which the site reads from
+# GITHUB_REPOSITORY rather than from a value written down. A pull request
+# builds but does not deploy, so a broken site is caught before it is served.
+
+on:
+  push:
+    # A pattern, not a list, so a version branch cut per major stays visible.
+    branches: ['*.x']
+    # GitHub Actions does not support YAML anchors, so this list is written
+    # twice rather than shared.
+    paths:
+      - README.md
+      - docs/**
+      - docs-site/**
+      - icon.svg
+      - .github/workflows/docs.yml
+  pull_request:
+    paths:
+      - README.md
+      - docs/**
+      - docs-site/**
+      - icon.svg
+      - .github/workflows/docs.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Actions are pinned to commit SHAs, not tags. A tag is a mutable
+      # reference to code that runs with this repository's credentials.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: docs-site/package-lock.json
+
+      - run: npm ci
+        working-directory: docs-site
+
+      # The repository's own social card, where one has been uploaded. GitHub
+      # holds that picture and answers for it through the API, and this job
+      # already has a token, so the call is made here and the address is
+      # passed to the build in DOCS_OG_IMAGE. The build then needs neither a
+      # token nor a network of its own.
+      #
+      # usesCustomOpenGraphImage is the check. Where no card has been
+      # uploaded openGraphImageUrl still answers, with GitHub's own generated
+      # picture of a repository, so a repository without a card passes
+      # nothing and the site publishes @druxt/dui's placeholder instead.
+      - name: Read the repository's social card
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          url=$(gh api graphql -f query='
+            query($owner: String!, $name: String!) {
+              repository(owner: $owner, name: $name) {
+                usesCustomOpenGraphImage
+                openGraphImageUrl
+              }
+            }' -F owner=${{ github.repository_owner }} \
+            -F name=${{ github.event.repository.name }} \
+            --jq 'if .data.repository.usesCustomOpenGraphImage
+                  then .data.repository.openGraphImageUrl else "" end' || true)
+          echo "DOCS_OG_IMAGE=$url" >> "$GITHUB_ENV"
+
+      # --fail-on-error, because a route that throws while rendering is
+      # reported and then generate exits 0 anyway. Without it a page missing
+      # from the output uploads and deploys as though the build had succeeded.
+      - run: npm run generate -- --fail-on-error
+        working-directory: docs-site
+
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa  # v3
+        with:
+          path: docs-site/dist
+
+  # Only the trunk is served. The environment is what gives the job the Pages
+  # deployment, and it carries the URL the run reports.
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/0.x'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e  # v4
+        id: deployment

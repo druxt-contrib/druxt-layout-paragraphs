@@ -1,7 +1,7 @@
 <!-- vale off -->
 <!-- The alt text describes what the banner shows: the druxt-layout-paragraphs mark, name and description. The name-colon-description form trips ColonUsage. -->
 <a href="https://druxtjs.org">
-  <img src=".github/banner.svg" alt="druxt-layout-paragraphs: Layout Paragraphs module for Druxt">
+  <img src="https://raw.githubusercontent.com/druxt-contrib/druxt-layout-paragraphs/0.x/.github/banner.svg" alt="druxt-layout-paragraphs: Layout Paragraphs module for Druxt">
 </a>
 <!-- vale on -->
 
@@ -50,4 +50,16 @@ module.exports = {
 
 1. Download, install and setup the [Layout Paragraphs module](https://www.drupal.org/project/layout_paragraphs).
 2. Set the **Layout Paragraphs** field formatter on the Layout Paragraphs fields.
-   ![Layout Paragraphs field formatter](./docs/images/field-formatter.png)
+   ![Layout Paragraphs field formatter](https://raw.githubusercontent.com/druxt-contrib/druxt-layout-paragraphs/0.x/docs/images/field-formatter.png)
+
+## More documentation
+
+These pages are also published as a [documentation site](https://contrib.druxtjs.org/druxt-layout-paragraphs/).
+
+- [Drupal setup](docs/drupal-setup.md): the modules, a layout paragraph type,
+  the field and its formatter
+- [Theming](docs/theming.md): the component name a layout resolves to, the
+  mixin, regions and the default region
+- [Troubleshooting](docs/troubleshooting.md)
+- [The example](https://github.com/druxt-contrib/druxt-layout-paragraphs/tree/0.x/example),
+  a Nuxt site and a Drupal site with Layout Paragraphs

@@ -110,3 +110,10 @@ coverage/
 reports/
 .vale/
 .yarn-cache/
+
+# The documentation site's build and the pages it stages from docs/.
+docs-site/.nuxt
+docs-site/.docs-content
+docs-site/dist
+# The module icon the library copies in as the site mark and favicon.
+docs-site/static/icon.svg

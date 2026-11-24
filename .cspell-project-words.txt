@@ -18,8 +18,8 @@ dbaeumer
 DDEV
 devcontainer
 devcontainers
-Druxt
 druxt
+Druxt
 druxtjs
 esbenp
 esbuild
@@ -42,6 +42,7 @@ libsqlite
 libxml
 libzip
 Licence
+llms
 lndo
 mailhog
 markdownlint
@@ -50,6 +51,7 @@ networkidle
 nproc
 Nuxt
 nuxt
+nuxtjs
 nvm
 nvmrc
 octref

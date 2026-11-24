@@ -1,0 +1,23 @@
+{
+  "name": "druxt-layout-paragraphs-docs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "serve": "nuxt start"
+  },
+  "dependencies": {
+    "@druxt/dui": "^0.1.0",
+    "@nuxt/content": "1.15.1",
+    "nuxt": "2.18.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/color-mode": "2.1.1",
+    "@nuxtjs/tailwindcss": "4.2.1",
+    "@tailwindcss/typography": "0.4.1",
+    "daisyui": "1.25.4",
+    "tailwindcss": "2.2.19",
+    "webpack": "^4.47.0"
+  }
+}
