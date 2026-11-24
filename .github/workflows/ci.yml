@@ -7,10 +7,13 @@ name: CI
 
 on:
   push:
-    branches: [main, develop]
-  # No branch filter: a pull request into any base runs CI. A stacked pull
-  # request targets the branch below it rather than develop, and a filter here
-  # would leave every one of them untested but green.
+    # A release line is <major>.x, or <major>.<minor>.x when an old minor needs
+    # a patch, and '*.x' matches both: * matches dots. A pattern, so a branch
+    # cut on demand is not invisible to CI.
+    branches: ['*.x']
+  # No branch filter on purpose. The filter matches the pull request's base, so
+  # a pull request stacked on an unlisted branch would run no jobs, and show no
+  # checks rather than failing ones.
   pull_request:
 
 permissions:
