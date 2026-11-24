@@ -1,6 +1,7 @@
 {
   "name": "druxt-layout-paragraphs",
   "version": "0.4.1",
+  "description": "Renders Drupal Layout Paragraphs fields in a Druxt site.",
   "keywords": [
     "druxt",
     "drupal",
